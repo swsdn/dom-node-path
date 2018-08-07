@@ -12,7 +12,6 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "tslib": "^1.9.3",
     "typescript": "^3.0.1"
   },
   "scripts": {
