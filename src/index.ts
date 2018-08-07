@@ -18,7 +18,7 @@ export class DOMNodePath {
       if (!node) {
         break
       }
-      const nodeData = this._parseElement(node)
+      const nodeData = this.parseElement(node)
       nodePath.unshift(nodeData)
       node = node.parentElement
     }
@@ -26,23 +26,25 @@ export class DOMNodePath {
     return nodePath
   }
 
-  _parseElement(node: HTMLElement): IParsedNode {
+  private parseElement(node: HTMLElement): IParsedNode {
+    const {id, tagName, classList} = node
+
     return {
-      tag: node.tagName.toLowerCase(),
-      id: node.id,
-      classList: [...node.classList],
-      nthChild: this._nthChild(node),
+      id,
+      tag: tagName.toLowerCase(),
+      classList: [...classList],
+      nthChild: this.nthChild(node),
     }
   }
 
-  _nthChild(node: HTMLElement) {
-    let num = 1
+  private nthChild(node: HTMLElement) {
     const parentNode = node.parentNode
 
     if (!parentNode) {
       return -1
     }
 
+    let num = 1
     const children = parentNode.childNodes
 
     for (const child of children) {
