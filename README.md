@@ -24,3 +24,6 @@ Example return value:
       {"tag":"div","id":"","classList":["main-content"],"nthChild":2},
       {"tag":"h1","id":"","classList":["header"],"nthChild":1},
      ]
+
+* the first element is descendant of `document.body`
+* the last element is the queried `node`
