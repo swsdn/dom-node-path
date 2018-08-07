@@ -1,0 +1,21 @@
+{
+  "name": "dom-node-path",
+  "version": "1.0.0",
+  "description": "find unique dom path for DOM node",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Jacek Grzybowski",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/efigence/dom-node-path.git"
+  },
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "tslib": "^1.9.3",
+    "typescript": "^3.0.1"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
