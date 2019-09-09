@@ -10,7 +10,27 @@ export class DOMNodePath {
     return (new DOMNodePath()).getNodePath(node)
   }
 
-  getNodePath(target: HTMLElement) {
+  static getXpath(node: HTMLElement) {
+    const parser = new DOMNodePath()
+    const nodePath = parser.getNodePath(node)
+    return parser.toXpath(nodePath)
+  }
+
+  toXpath(nodePath: IParsedNode[]): String {
+    let xpath = ""
+    for (const element of nodePath.reverse()) {
+      let tag = element.tag
+      let nth = element.nthChild
+      if (tag === "body") {
+        break
+      }
+      let nthStr = nth > 1 ? `[${nth}]` : ""
+      xpath = "/" + tag + nthStr + xpath
+    }
+    return "/" + xpath
+  }
+
+  getNodePath(target: HTMLElement): IParsedNode[] {
     let node: HTMLElement | null = target
     const nodePath = []
 
