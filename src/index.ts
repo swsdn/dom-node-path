@@ -10,18 +10,23 @@ export class DOMNodePath {
     return (new DOMNodePath()).getNodePath(node)
   }
 
-  static getXpath(node: HTMLElement) {
+  static getXpath(node: HTMLElement, shortened: boolean = false) {
     const parser = new DOMNodePath()
     const nodePath = parser.getNodePath(node)
-    return parser.toXpath(nodePath)
+    return parser.toXpath(nodePath, shortened)
   }
 
-  toXpath(nodePath: IParsedNode[]): String {
+  toXpath(nodePath: IParsedNode[], shortened: boolean): String {
     let xpath = ""
     for (const element of nodePath.reverse()) {
       let tag = element.tag
+      let id = element.id
       let nth = element.nthChild
       if (tag === "body") {
+        break
+      }
+      if (shortened && id !== null && id !== "") {
+        xpath = `/${tag}[@id="${id}"]` + xpath
         break
       }
       let nthStr = nth > 1 ? `[${nth}]` : ""
