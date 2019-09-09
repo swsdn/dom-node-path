@@ -52,7 +52,7 @@ export class DOMNodePath {
         return num
       }
 
-      if (child.nodeType === 1) {
+      if (child.nodeType === 1 && child.nodeName === node.nodeName) {
         num++
       }
     }
